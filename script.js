@@ -6,6 +6,94 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     // ==========================================
+    // BANNER CAROUSEL (MOBILE)
+    // ==========================================
+    const carousel = document.getElementById('bannerCarousel');
+    const dots = document.querySelectorAll('.banner-carousel-dots .dot');
+    let currentSlide = 0;
+    let autoPlayInterval;
+    const totalSlides = 3;
+
+    function goToSlide(index) {
+        if (!carousel) return;
+        currentSlide = index;
+        carousel.style.transform = 'translateX(-' + (index * 100) + '%)';
+
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+        });
+    }
+
+    function nextSlide() {
+        goToSlide((currentSlide + 1) % totalSlides);
+    }
+
+    // Auto-play do carrossel
+    function startAutoPlay() {
+        autoPlayInterval = setInterval(nextSlide, 4000);
+    }
+
+    function stopAutoPlay() {
+        clearInterval(autoPlayInterval);
+    }
+
+    // Dots click
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            stopAutoPlay();
+            goToSlide(index);
+            startAutoPlay();
+        });
+    });
+
+    // Touch/swipe support para o carrossel
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    if (carousel) {
+        carousel.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            stopAutoPlay();
+        }, { passive: true });
+
+        carousel.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+            startAutoPlay();
+        }, { passive: true });
+    }
+
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                // Swipe left -> next
+                goToSlide((currentSlide + 1) % totalSlides);
+            } else {
+                // Swipe right -> prev
+                goToSlide((currentSlide - 1 + totalSlides) % totalSlides);
+            }
+        }
+    }
+
+    // Inicia auto-play apenas se estiver em mobile
+    if (window.innerWidth <= 768 && carousel) {
+        startAutoPlay();
+    }
+
+    // Re-inicia auto-play ao redimensionar para mobile
+    window.addEventListener('resize', () => {
+        if (window.innerWidth <= 768 && carousel) {
+            stopAutoPlay();
+            startAutoPlay();
+        } else {
+            stopAutoPlay();
+        }
+    });
+
+    // ==========================================
     // NAVBAR SCROLL EFFECT
     // ==========================================
     const navbar = document.getElementById('navbar');
@@ -167,7 +255,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ==========================================
-    // FORMULÁRIO → WHATSAPP (CORRIGIDO)
+    // FORMULÁRIO → WHATSAPP
     // Envia TODOS os campos preenchidos para o WhatsApp
     // ==========================================
     const contatoForm = document.getElementById('contatoForm');
@@ -261,12 +349,13 @@ document.addEventListener('DOMContentLoaded', function() {
     navbar.style.transition = 'transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease';
 
     // ==========================================
-    // ACTIVE NAV LINK ON SCROLL
+    // ACTIVE NAV LINK ON SCROLL (DESKTOP)
     // ==========================================
     const sections = document.querySelectorAll('section[id]');
 
     function setActiveLink() {
-        const scrollPos = window.pageYOffset + 100;
+        const scrollPos = window.pageYOffset + 120;
+        let currentSection = '';
 
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
@@ -274,17 +363,27 @@ document.addEventListener('DOMContentLoaded', function() {
             const sectionId = section.getAttribute('id');
 
             if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === '#' + sectionId) {
-                        link.classList.add('active');
-                    }
-                });
+                currentSection = sectionId;
+            }
+        });
+
+        // Se estiver no topo, ativa o início
+        if (window.pageYOffset < 100) {
+            currentSection = 'inicio';
+        }
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            const href = link.getAttribute('href');
+            if (href === '#' + currentSection) {
+                link.classList.add('active');
             }
         });
     }
 
     window.addEventListener('scroll', setActiveLink, { passive: true });
+    // Executa uma vez ao carregar
+    setActiveLink();
 
     // ==========================================
     // LAZY LOAD IMAGES
@@ -344,6 +443,3 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('%c PESKDO ', 'background: #0066A1; color: #fff; font-size: 20px; font-weight: bold; padding: 10px 20px; border-radius: 8px;');
     console.log('%cSite otimizado para conversão B2B', 'color: #0066A1; font-size: 14px;');
 });
-
-    console.log('%c PESKDO ', 'background: #0066A1; color: #fff; font-size: 20px; font-weight: bold; padding: 10px 20px; border-radius: 8px;');
-    console.log('%cSite otimizado para conversão B2B', 'color: #0066A1; font-size: 14px;');
