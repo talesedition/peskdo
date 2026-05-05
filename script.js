@@ -223,9 +223,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // ==========================================
     // MÁSCARA DE TELEFONE
     // ==========================================
-    const telefoneInput = document.getElementById('telefone');
-    if (telefoneInput) {
-        telefoneInput.addEventListener('input', function(e) {
+    function aplicarMascaraTelefone(input) {
+        if (!input) return;
+        input.addEventListener('input', function(e) {
             let value = e.target.value.replace(/\D/g, '');
 
             if (value.length > 11) {
@@ -246,19 +246,22 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    aplicarMascaraTelefone(document.getElementById('telefoneLead'));
+    aplicarMascaraTelefone(document.getElementById('whatsappFinal'));
+
     // ==========================================
-    // FORMULÁRIO → WHATSAPP
+    // FORMULÁRIO LEAD (NO INÍCIO) → WHATSAPP
     // ==========================================
-    const contatoForm = document.getElementById('contatoForm');
-    if (contatoForm) {
-        contatoForm.addEventListener('submit', function(e) {
+    const leadForm = document.getElementById('leadFormElement');
+    if (leadForm) {
+        leadForm.addEventListener('submit', function(e) {
             e.preventDefault();
 
-            const nome = document.getElementById('nome').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const telefone = document.getElementById('telefone').value.trim();
-            const tipo = document.getElementById('tipo').value;
-            const mensagem = document.getElementById('mensagem').value.trim();
+            const nome = document.getElementById('nomeLead').value.trim();
+            const email = document.getElementById('emailLead').value.trim();
+            const telefone = document.getElementById('telefoneLead').value.trim();
+            const tipo = document.getElementById('tipoLead').value;
+            const mensagem = document.getElementById('mensagemLead').value.trim();
 
             const tipoLabels = {
                 'supermercado': 'Supermercado',
@@ -286,7 +289,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             window.open(whatsappUrl, '_blank');
 
-            const btn = contatoForm.querySelector('button[type="submit"]');
+            const btn = leadForm.querySelector('button[type="submit"]');
             const originalText = btn.innerHTML;
             btn.innerHTML = '<i class="fas fa-check"></i> Mensagem Enviada!';
             btn.style.background = '#22c55e';
@@ -298,7 +301,63 @@ document.addEventListener('DOMContentLoaded', function() {
                 btn.style.background = '';
                 btn.style.borderColor = '';
                 btn.disabled = false;
-                contatoForm.reset();
+                leadForm.reset();
+            }, 3000);
+        });
+    }
+
+    // ==========================================
+    // FORMULÁRIO FINAL (CONTATO) → WHATSAPP
+    // ==========================================
+    const contatoFormFinal = document.getElementById('contatoFormFinal');
+    if (contatoFormFinal) {
+        contatoFormFinal.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const tipoNegocio = document.getElementById('tipoNegocio').value;
+            const qtdEstabelecimentos = document.getElementById('qtdEstabelecimentos').value.trim();
+            const email = document.getElementById('emailFinal').value.trim();
+            const whatsapp = document.getElementById('whatsappFinal').value.trim();
+            const mensagem = document.getElementById('mensagemFinal').value.trim();
+
+            const tipoLabels = {
+                'supermercado': 'Supermercado',
+                'restaurante': 'Restaurante',
+                'outro': 'Outro'
+            };
+
+            const tipoNegocioLabel = tipoLabels[tipoNegocio] || tipoNegocio || 'Não informado';
+
+            let text = '*Novo contato pelo site Peskdo — Formulário Final*';
+            text += '%0A%0A';
+            text += '*Qual o seu negócio?:* ' + encodeURIComponent(tipoNegocioLabel);
+            text += '%0A';
+            text += '*Quantos estabelecimentos?:* ' + encodeURIComponent(qtdEstabelecimentos);
+            text += '%0A';
+            text += '*E-mail:* ' + encodeURIComponent(email);
+            text += '%0A';
+            text += '*WhatsApp:* ' + encodeURIComponent(whatsapp);
+            text += '%0A%0A';
+            text += '*Mensagem:*';
+            text += '%0A' + encodeURIComponent(mensagem);
+
+            const whatsappUrl = 'https://wa.me/5521998716964?text=' + text;
+
+            window.open(whatsappUrl, '_blank');
+
+            const btn = contatoFormFinal.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check"></i> Mensagem Enviada!';
+            btn.style.background = '#22c55e';
+            btn.style.borderColor = '#22c55e';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.style.background = '';
+                btn.style.borderColor = '';
+                btn.disabled = false;
+                contatoFormFinal.reset();
             }, 3000);
         });
     }
@@ -423,6 +482,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // ==========================================
     // CONSOLE BRANDING
     // ==========================================
-    console.log('%c PESKDO ', 'background: #0066CC; color: #fff; font-size: 20px; font-weight: bold; padding: 10px 20px; border-radius: 8px;');
-    console.log('%cSite otimizado para conversão', 'color: #0066CC; font-size: 14px;');
+    console.log('%c PESKDO ', 'background: #00BFA5; color: #fff; font-size: 20px; font-weight: bold; padding: 10px 20px; border-radius: 8px;');
+    console.log('%cSite otimizado para conversão', 'color: #00BFA5; font-size: 14px;');
 });
