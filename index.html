@@ -39,63 +39,81 @@
         </div>
     </nav>
 
-    <!-- Banner Características (TOPO) -->
-    <section class="banner-features">
-        <div class="container">
-            <!-- Desktop: grid normal -->
-            <div class="banner-grid desktop-only">
-                <div class="banner-card">
-                    <div class="banner-icon"><i class="fas fa-balance-scale"></i></div>
-                    <h3>Rendimento Real</h3>
-                    <p>Nosso processo de drenagem garante <strong>peso real na bandeja</strong>. Seu cliente compra 10kg e leva 10kg de peixe — não 8kg.</p>
+    <!-- BANNERS FULL-WIDTH CARROSSEL (3 DIFERENCIAIS) -->
+    <section class="hero-banners" id="heroBanners">
+        <div class="banners-track" id="bannersTrack">
+            
+            <!-- Slide 1: Rendimento Real -->
+            <div class="banner-slide active">
+                <div class="banner-bg" style="background: linear-gradient(135deg, #0066CC 0%, #004d99 100%);"></div>
+                <div class="banner-shapes">
+                    <div class="shape shape-1"></div>
+                    <div class="shape shape-2"></div>
                 </div>
-                <div class="banner-card featured">
-                    <div class="banner-icon"><i class="fas fa-fish-fins"></i></div>
-                    <h3>Criação Própria</h3>
-                    <p>Controlamos <strong>todos os parâmetros</strong> desde o alevino até o processamento final. Rastreabilidade total do produto.</p>
-                </div>
-                <div class="banner-card">
-                    <div class="banner-icon"><i class="fas fa-truck-fast"></i></div>
-                    <h3>Logística Própria</h3>
-                    <p>Entrega extremamente rápida com <strong>frota própria</strong>. O peixe sai do tanque e chega fresco ao seu estabelecimento.</p>
+                <div class="container banner-inner">
+                    <div class="banner-col banner-icon-col">
+                        <div class="banner-icon-wrap">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                    </div>
+                    <div class="banner-col banner-text-col">
+                        <h2>Rendimento Real</h2>
+                        <p>Nosso processo de drenagem garante <strong>peso real na bandeja</strong>. Seu cliente compra 10kg e leva 10kg de peixe — não 8kg.</p>
+                    </div>
                 </div>
             </div>
 
-            <!-- Mobile: carrossel horizontal -->
-            <div class="banner-carousel mobile-only" id="bannerCarouselWrapper">
-                <div class="banner-carousel-track" id="bannerCarousel">
-                    <div class="banner-carousel-slide">
-                        <div class="banner-card">
-                            <div class="banner-icon"><i class="fas fa-balance-scale"></i></div>
-                            <h3>Rendimento Real</h3>
-                            <p>Nosso processo de drenagem garante <strong>peso real na bandeja</strong>. Seu cliente compra 10kg e leva 10kg de peixe.</p>
-                        </div>
-                    </div>
-                    <div class="banner-carousel-slide">
-                        <div class="banner-card featured">
-                            <div class="banner-icon"><i class="fas fa-fish-fins"></i></div>
-                            <h3>Criação Própria</h3>
-                            <p>Controlamos <strong>todos os parâmetros</strong> desde o alevino até o processamento final.</p>
-                        </div>
-                    </div>
-                    <div class="banner-carousel-slide">
-                        <div class="banner-card">
-                            <div class="banner-icon"><i class="fas fa-truck-fast"></i></div>
-                            <h3>Logística Própria</h3>
-                            <p>Entrega rápida com <strong>frota própria</strong>. Do tanque ao seu estabelecimento em tempo recorde.</p>
-                        </div>
-                    </div>
+            <!-- Slide 2: Criação Própria -->
+            <div class="banner-slide">
+                <div class="banner-bg" style="background: linear-gradient(135deg, #00A8C6 0%, #0077b6 100%);"></div>
+                <div class="banner-shapes">
+                    <div class="shape shape-3"></div>
+                    <div class="shape shape-4"></div>
                 </div>
-                <div class="banner-carousel-dots" id="bannerDots">
-                    <button class="dot active" data-slide="0" aria-label="Slide 1"></button>
-                    <button class="dot" data-slide="1" aria-label="Slide 2"></button>
-                    <button class="dot" data-slide="2" aria-label="Slide 3"></button>
+                <div class="container banner-inner">
+                    <div class="banner-col banner-icon-col">
+                        <div class="banner-icon-wrap">
+                            <i class="fas fa-fish-fins"></i>
+                        </div>
+                    </div>
+                    <div class="banner-col banner-text-col">
+                        <h2>Criação Própria</h2>
+                        <p>Controlamos <strong>todos os parâmetros</strong> desde o alevino até o processamento final. Rastreabilidade total do produto.</p>
+                    </div>
                 </div>
             </div>
+
+            <!-- Slide 3: Logística Própria -->
+            <div class="banner-slide">
+                <div class="banner-bg" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);"></div>
+                <div class="banner-shapes">
+                    <div class="shape shape-5"></div>
+                    <div class="shape shape-6"></div>
+                </div>
+                <div class="container banner-inner">
+                    <div class="banner-col banner-icon-col">
+                        <div class="banner-icon-wrap">
+                            <i class="fas fa-truck-fast"></i>
+                        </div>
+                    </div>
+                    <div class="banner-col banner-text-col">
+                        <h2>Logística Própria</h2>
+                        <p>Entrega extremamente rápida com <strong>frota própria</strong>. O peixe sai do tanque e chega fresco ao seu estabelecimento.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Dots -->
+        <div class="banner-dots" id="bannerDots">
+            <button class="dot active" data-slide="0" aria-label="Slide 1"></button>
+            <button class="dot" data-slide="1" aria-label="Slide 2"></button>
+            <button class="dot" data-slide="2" aria-label="Slide 3"></button>
         </div>
     </section>
 
-    <!-- Hero Section -->
+    <!-- Hero Section (SEM IMAGEM — TEXTO CENTRALIZADO) -->
     <section class="hero" id="inicio">
         <div class="hero-bg"></div>
         <div class="container hero-container">
@@ -130,20 +148,6 @@
                     <div class="trust-item">
                         <i class="fas fa-leaf"></i>
                         <span>Produção Sustentável</span>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-image">
-                <div class="hero-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=800&q=80" alt="Filé de tilápia fresco em prato profissional">
-                    <div class="hero-float-card">
-                        <div class="float-card-icon">
-                            <i class="fas fa-weight-hanging"></i>
-                        </div>
-                        <div class="float-card-text">
-                            <strong>100% Rendimento</strong>
-                            <span>Sem retenção de água</span>
-                        </div>
                     </div>
                 </div>
             </div>

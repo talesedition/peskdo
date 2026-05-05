@@ -6,94 +6,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     // ==========================================
-    // BANNER CAROUSEL (MOBILE)
-    // ==========================================
-    const carousel = document.getElementById('bannerCarousel');
-    const dots = document.querySelectorAll('.banner-carousel-dots .dot');
-    let currentSlide = 0;
-    let autoPlayInterval;
-    const totalSlides = 3;
-
-    function goToSlide(index) {
-        if (!carousel) return;
-        currentSlide = index;
-        carousel.style.transform = 'translateX(-' + (index * 100) + '%)';
-
-        dots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === index);
-        });
-    }
-
-    function nextSlide() {
-        goToSlide((currentSlide + 1) % totalSlides);
-    }
-
-    // Auto-play do carrossel
-    function startAutoPlay() {
-        autoPlayInterval = setInterval(nextSlide, 4000);
-    }
-
-    function stopAutoPlay() {
-        clearInterval(autoPlayInterval);
-    }
-
-    // Dots click
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            stopAutoPlay();
-            goToSlide(index);
-            startAutoPlay();
-        });
-    });
-
-    // Touch/swipe support para o carrossel
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    if (carousel) {
-        carousel.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-            stopAutoPlay();
-        }, { passive: true });
-
-        carousel.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-            startAutoPlay();
-        }, { passive: true });
-    }
-
-    function handleSwipe() {
-        const swipeThreshold = 50;
-        const diff = touchStartX - touchEndX;
-
-        if (Math.abs(diff) > swipeThreshold) {
-            if (diff > 0) {
-                // Swipe left -> next
-                goToSlide((currentSlide + 1) % totalSlides);
-            } else {
-                // Swipe right -> prev
-                goToSlide((currentSlide - 1 + totalSlides) % totalSlides);
-            }
-        }
-    }
-
-    // Inicia auto-play apenas se estiver em mobile
-    if (window.innerWidth <= 768 && carousel) {
-        startAutoPlay();
-    }
-
-    // Re-inicia auto-play ao redimensionar para mobile
-    window.addEventListener('resize', () => {
-        if (window.innerWidth <= 768 && carousel) {
-            stopAutoPlay();
-            startAutoPlay();
-        } else {
-            stopAutoPlay();
-        }
-    });
-
-    // ==========================================
     // NAVBAR SCROLL EFFECT
     // ==========================================
     const navbar = document.getElementById('navbar');
@@ -163,6 +75,86 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // ==========================================
+    // BANNERS CARROSSEL FULL-WIDTH (3 DIFERENCIAIS)
+    // ==========================================
+    const bannersTrack = document.getElementById('bannersTrack');
+    const bannerSlides = document.querySelectorAll('.banner-slide');
+    const bannerDots = document.querySelectorAll('#bannerDots .dot');
+    let currentBanner = 0;
+    let bannerInterval;
+    const bannerDelay = 5000;
+
+    function goToBanner(index) {
+        if (index < 0) index = bannerSlides.length - 1;
+        if (index >= bannerSlides.length) index = 0;
+
+        bannerSlides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === index);
+        });
+
+        bannerDots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+        });
+
+        currentBanner = index;
+    }
+
+    function nextBanner() {
+        goToBanner(currentBanner + 1);
+    }
+
+    function startBannerAutoPlay() {
+        bannerInterval = setInterval(nextBanner, bannerDelay);
+    }
+
+    function stopBannerAutoPlay() {
+        clearInterval(bannerInterval);
+    }
+
+    // Dots click
+    bannerDots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            stopBannerAutoPlay();
+            goToBanner(index);
+            startBannerAutoPlay();
+        });
+    });
+
+    // Touch swipe para banners
+    let bannerTouchStartX = 0;
+    let bannerTouchEndX = 0;
+
+    bannersTrack.addEventListener('touchstart', function(e) {
+        bannerTouchStartX = e.changedTouches[0].screenX;
+        stopBannerAutoPlay();
+    }, { passive: true });
+
+    bannersTrack.addEventListener('touchend', function(e) {
+        bannerTouchEndX = e.changedTouches[0].screenX;
+        handleBannerSwipe();
+        startBannerAutoPlay();
+    }, { passive: true });
+
+    function handleBannerSwipe() {
+        const swipeThreshold = 50;
+        const diff = bannerTouchStartX - bannerTouchEndX;
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                goToBanner(currentBanner + 1);
+            } else {
+                goToBanner(currentBanner - 1);
+            }
+        }
+    }
+
+    // Inicia autoplay dos banners
+    startBannerAutoPlay();
+
+    // Pausa ao passar o mouse (desktop)
+    bannersTrack.addEventListener('mouseenter', stopBannerAutoPlay);
+    bannersTrack.addEventListener('mouseleave', startBannerAutoPlay);
 
     // ==========================================
     // INTERSECTION OBSERVER — ANIMAÇÕES SCROLL
@@ -256,21 +248,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ==========================================
     // FORMULÁRIO → WHATSAPP
-    // Envia TODOS os campos preenchidos para o WhatsApp
     // ==========================================
     const contatoForm = document.getElementById('contatoForm');
     if (contatoForm) {
         contatoForm.addEventListener('submit', function(e) {
             e.preventDefault();
 
-            // Captura TODOS os valores dos campos
             const nome = document.getElementById('nome').value.trim();
             const email = document.getElementById('email').value.trim();
             const telefone = document.getElementById('telefone').value.trim();
             const tipo = document.getElementById('tipo').value;
             const mensagem = document.getElementById('mensagem').value.trim();
 
-            // Mapa de tipos de negócio
             const tipoLabels = {
                 'supermercado': 'Supermercado',
                 'restaurante': 'Restaurante',
@@ -278,9 +267,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 'outro': 'Outro'
             };
 
-            const tipoNegocio = tipoLabels[tipo] || tipo || 'Não informado';
+            const tipoInteresse = tipoLabels[tipo] || tipo || 'Não informado';
 
-            // Monta a mensagem com TODOS os dados do formulário
             let text = '*Novo contato pelo site Peskdo*';
             text += '%0A%0A';
             text += '*Nome:* ' + encodeURIComponent(nome);
@@ -289,18 +277,15 @@ document.addEventListener('DOMContentLoaded', function() {
             text += '%0A';
             text += '*WhatsApp:* ' + encodeURIComponent(telefone);
             text += '%0A';
-            text += '*Tipo de negócio:* ' + encodeURIComponent(tipoNegocio);
+            text += '*Interesse:* ' + encodeURIComponent(tipoInteresse);
             text += '%0A%0A';
             text += '*Mensagem:*';
             text += '%0A' + encodeURIComponent(mensagem);
 
-            // URL do WhatsApp com número do cliente e mensagem completa
             const whatsappUrl = 'https://wa.me/5521998716964?text=' + text;
 
-            // Abre WhatsApp em nova aba
             window.open(whatsappUrl, '_blank');
 
-            // Feedback visual no botão
             const btn = contatoForm.querySelector('button[type="submit"]');
             const originalText = btn.innerHTML;
             btn.innerHTML = '<i class="fas fa-check"></i> Mensagem Enviada!';
@@ -367,7 +352,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Se estiver no topo, ativa o início
         if (window.pageYOffset < 100) {
             currentSection = 'inicio';
         }
@@ -382,7 +366,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     window.addEventListener('scroll', setActiveLink, { passive: true });
-    // Executa uma vez ao carregar
     setActiveLink();
 
     // ==========================================
@@ -440,6 +423,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // ==========================================
     // CONSOLE BRANDING
     // ==========================================
-    console.log('%c PESKDO ', 'background: #0066A1; color: #fff; font-size: 20px; font-weight: bold; padding: 10px 20px; border-radius: 8px;');
-    console.log('%cSite otimizado para conversão B2B', 'color: #0066A1; font-size: 14px;');
+    console.log('%c PESKDO ', 'background: #0066CC; color: #fff; font-size: 20px; font-weight: bold; padding: 10px 20px; border-radius: 8px;');
+    console.log('%cSite otimizado para conversão', 'color: #0066CC; font-size: 14px;');
 });
