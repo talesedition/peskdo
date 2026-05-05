@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <base target="_blank">
-<base target="_blank">
 </head>
 <body>
 
@@ -205,19 +204,6 @@
                 </form>
             </div>
         </div>
-    </section>
-
-    <!-- Google Maps Full-Width -->
-    <section class="maps-fullwidth">
-        <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3679.105!2d-42.6083024!3d-22.8838729!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x99e1006cffb421%3A0x899aa474b3311d5b!2sPESKDO!5e0!3m2!1spt-BR!2sbr!4v1710000000000!5m2!1spt-BR!2sbr" 
-            width="100%" 
-            height="500" 
-            style="border:0; display:block;" 
-            allowfullscreen="" 
-            loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
     </section>
 
     <!-- Stats Section -->
@@ -511,80 +497,83 @@
                 <p class="section-subtitle">Entre em contato conosco pelos canais abaixo ou visite nossa piscicultura.</p>
             </div>
 
-            <!-- Formulário de Contato (Final) -->
-            <div class="contato-form-final-wrapper">
-                <form class="contato-form-final" id="contatoFormFinal">
-                    <div class="form-row-tres">
-                        <div class="form-group">
-                            <label for="tipoNegocio">Qual o seu negócio?</label>
-                            <select id="tipoNegocio" name="tipoNegocio" required>
-                                <option value="" disabled selected>Selecione...</option>
-                                <option value="supermercado">Supermercado</option>
-                                <option value="restaurante">Restaurante</option>
-                                <option value="outro">Outro</option>
-                            </select>
+            <div class="contato-wrapper">
+                <!-- Formulário de Contato -->
+                <div class="contato-form-final-wrapper">
+                    <form class="contato-form-final" id="contatoFormFinal">
+                        <div class="form-row-tres">
+                            <div class="form-group">
+                                <label for="tipoNegocio">Qual o seu negócio?</label>
+                                <select id="tipoNegocio" name="tipoNegocio" required>
+                                    <option value="" disabled selected>Selecione...</option>
+                                    <option value="supermercado">Supermercado</option>
+                                    <option value="restaurante">Restaurante</option>
+                                    <option value="outro">Outro</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="qtdEstabelecimentos">Quantos estabelecimentos você possui?</label>
+                                <input type="text" id="qtdEstabelecimentos" name="qtdEstabelecimentos" placeholder="Ex: 2 lojas, 1 restaurante..." required>
+                            </div>
+                        </div>
+                        <div class="form-row-tres">
+                            <div class="form-group">
+                                <label for="emailFinal">E-mail</label>
+                                <input type="email" id="emailFinal" name="email" placeholder="seu@email.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="whatsappFinal">WhatsApp</label>
+                                <input type="tel" id="whatsappFinal" name="whatsapp" placeholder="(21) 99999-9999" required>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="qtdEstabelecimentos">Quantos estabelecimentos você possui?</label>
-                            <input type="text" id="qtdEstabelecimentos" name="qtdEstabelecimentos" placeholder="Ex: 2 lojas, 1 restaurante..." required>
+                            <label for="mensagemFinal">Mensagem</label>
+                            <textarea id="mensagemFinal" name="mensagem" rows="4" placeholder="Conte-nos sobre sua demanda (volume, frequência, local de entrega...)" required></textarea>
                         </div>
-                    </div>
-                    <div class="form-row-tres">
-                        <div class="form-group">
-                            <label for="emailFinal">E-mail</label>
-                            <input type="email" id="emailFinal" name="email" placeholder="seu@email.com" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="whatsappFinal">WhatsApp</label>
-                            <input type="tel" id="whatsappFinal" name="whatsapp" placeholder="(21) 99999-9999" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="mensagemFinal">Mensagem</label>
-                        <textarea id="mensagemFinal" name="mensagem" rows="4" placeholder="Conte-nos sobre sua demanda (volume, frequência, local de entrega...)" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-lg btn-full">
-                        <i class="fas fa-paper-plane"></i> Enviar Mensagem
-                    </button>
-                    <p class="form-note">Ao enviar, você receberá uma cópia no WhatsApp com todos os dados preenchidos.</p>
-                </form>
-            </div>
+                        <button type="submit" class="btn btn-primary btn-lg btn-full">
+                            <i class="fas fa-paper-plane"></i> Enviar Mensagem
+                        </button>
+                        <p class="form-note">Ao enviar, você receberá uma cópia no WhatsApp com todos os dados preenchidos.</p>
+                    </form>
+                </div>
 
-            <div class="contato-grid">
-                <div class="contato-info">
-                    <div class="cinfo-card">
-                        <div class="cinfo-icon"><i class="fab fa-whatsapp"></i></div>
-                        <div>
-                            <h4>WhatsApp (Vendas)</h4>
-                            <a href="https://wa.me/5521998716964" target="_blank">(21) 99871-6964</a>
+                <!-- Informações de Contato -->
+                <div class="contato-info-wrapper">
+                    <div class="contato-info">
+                        <div class="cinfo-card">
+                            <div class="cinfo-icon"><i class="fab fa-whatsapp"></i></div>
+                            <div>
+                                <h4>WhatsApp (Vendas)</h4>
+                                <a href="https://wa.me/5521998716964" target="_blank">(21) 99871-6964</a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="cinfo-card">
-                        <div class="cinfo-icon"><i class="fas fa-phone"></i></div>
-                        <div>
-                            <h4>Telefone</h4>
-                            <a href="tel:+5521976184069">(21) 97618-4069</a>
+                        <div class="cinfo-card">
+                            <div class="cinfo-icon"><i class="fas fa-phone"></i></div>
+                            <div>
+                                <h4>Telefone</h4>
+                                <a href="tel:+5521976184069">(21) 97618-4069</a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="cinfo-card">
-                        <div class="cinfo-icon"><i class="fas fa-envelope"></i></div>
-                        <div>
-                            <h4>E-mail</h4>
-                            <a href="mailto:peskdorj@gmail.com">peskdorj@gmail.com</a>
+                        <div class="cinfo-card">
+                            <div class="cinfo-icon"><i class="fas fa-envelope"></i></div>
+                            <div>
+                                <h4>E-mail</h4>
+                                <a href="mailto:peskdorj@gmail.com">peskdorj@gmail.com</a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="cinfo-card">
-                        <div class="cinfo-icon"><i class="fas fa-location-dot"></i></div>
-                        <div>
-                            <h4>Endereço</h4>
-                            <p>Estrada Sampaio Correia, 118 — Jaconé<br>Saquarema/RJ · CEP 28998-710</p>
+                        <div class="cinfo-card">
+                            <div class="cinfo-icon"><i class="fas fa-location-dot"></i></div>
+                            <div>
+                                <h4>Endereço</h4>
+                                <p>Estrada Sampaio Correia, 118 — Jaconé<br>Saquarema/RJ · CEP 28998-710</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="cinfo-card">
-                        <div class="cinfo-icon"><i class="fab fa-instagram"></i></div>
-                        <div>
-                            <h4>Instagram</h4>
-                            <a href="https://instagram.com/peskdorj" target="_blank">@peskdorj</a>
+                        <div class="cinfo-card">
+                            <div class="cinfo-icon"><i class="fab fa-instagram"></i></div>
+                            <div>
+                                <h4>Instagram</h4>
+                                <a href="https://instagram.com/peskdorj" target="_blank">@peskdorj</a>
+                            </div>
                         </div>
                     </div>
                     <div class="cinfo-social">
@@ -593,18 +582,20 @@
                         <a href="#" class="social-btn facebook"><i class="fab fa-facebook-f"></i></a>
                     </div>
                 </div>
-                <div class="contato-maps">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3679.105!2d-42.6083024!3d-22.8838729!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x99e1006cffb421%3A0x899aa474b3311d5b!2sPESKDO!5e0!3m2!1spt-BR!2sbr!4v1710000000000!5m2!1spt-BR!2sbr" 
-                        width="100%" 
-                        height="100%" 
-                        style="border:0; border-radius: 16px; min-height: 400px;" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-                </div>
             </div>
+        </div>
+
+        <!-- Mapa Full-Width -->
+        <div class="contato-maps-fullwidth">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3679.105!2d-42.6083024!3d-22.8838729!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x99e1006cffb421%3A0x899aa474b3311d5b!2sPESKDO!5e0!3m2!1spt-BR!2sbr!4v1710000000000!5m2!1spt-BR!2sbr" 
+                width="100%" 
+                height="100%" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
         </div>
     </section>
 
