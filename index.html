@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <base target="_blank">
+<base target="_blank">
 </head>
 <body>
 
@@ -27,6 +28,7 @@
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#inicio" class="nav-link">Início</a></li>
                 <li><a href="#sobre" class="nav-link">A Empresa</a></li>
+                <li><a href="#criacao" class="nav-link">Nossa Criação</a></li>
                 <li><a href="#produto" class="nav-link">Produto</a></li>
                 <li><a href="#processo" class="nav-link">Processo</a></li>
                 <li><a href="#contato" class="nav-link">Contato</a></li>
@@ -45,7 +47,7 @@
 
             <!-- Slide 1: Rendimento Real -->
             <div class="banner-slide active">
-                <div class="banner-bg" style="background: linear-gradient(135deg, #00BFA5 0%, #00695C 100%);"></div>
+                <div class="banner-bg" style="background-image: url('img/03.jpeg');"></div>
                 <div class="banner-shapes">
                     <div class="shape shape-1"></div>
                     <div class="shape shape-2"></div>
@@ -65,7 +67,7 @@
 
             <!-- Slide 2: Criação Própria -->
             <div class="banner-slide">
-                <div class="banner-bg" style="background: linear-gradient(135deg, #26A69A 0%, #00796B 100%);"></div>
+                <div class="banner-bg" style="background-image: url('img/18.jpeg');"></div>
                 <div class="banner-shapes">
                     <div class="shape shape-3"></div>
                     <div class="shape shape-4"></div>
@@ -85,7 +87,7 @@
 
             <!-- Slide 3: Logística Própria -->
             <div class="banner-slide">
-                <div class="banner-bg" style="background: linear-gradient(135deg, #1a1a2e 0%, #004D40 100%);"></div>
+                <div class="banner-bg" style="background-image: url('img/09.jpeg');"></div>
                 <div class="banner-shapes">
                     <div class="shape shape-5"></div>
                     <div class="shape shape-6"></div>
@@ -207,7 +209,8 @@
     </section>
 
     <!-- Stats Section -->
-    <section class="stats">
+    <section class="stats" id="stats">
+        <div class="stats-overlay"></div>
         <div class="container">
             <div class="stats-grid">
                 <div class="stat-item" data-aos="fade-up">
@@ -289,10 +292,10 @@
             <div class="sobre-grid">
                 <div class="sobre-images">
                     <div class="sobre-img-main">
-                        <img src="https://peskdo.com.br/wp-content/uploads/2021/06/WhatsApp-Image-2021-06-22-at-14.54.52-1.jpeg" alt="Estrutura de tanques elevados Peskdo">
+                        <img src="img/05.jpeg" alt="Vista panorâmica dos tanques de criação Peskdo em Saquarema">
                     </div>
                     <div class="sobre-img-secondary">
-                        <img src="https://peskdo.com.br/wp-content/uploads/2021/06/WhatsApp-Image-2021-06-22-at-14.54.52-2.jpeg" alt="Vista panorâmica da piscicultura">
+                        <img src="img/09.jpeg" alt="Equipe Peskdo na estrutura de tanques elevados RAS">
                     </div>
                     <div class="sobre-experience">
                         <span class="exp-number">Família</span>
@@ -328,6 +331,46 @@
         </div>
     </section>
 
+    <!-- Nossa Criação - Galeria -->
+    <section class="criacao" id="criacao">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Nossa Criação</span>
+                <h2 class="section-title">Do <span class="text-primary">tanque</span> à sua mesa</h2>
+                <p class="section-subtitle">Todas as etapas da produção acontecem sob nossa supervisão direta, garantindo peixes saudáveis e filés de qualidade superior.</p>
+            </div>
+            <div class="criacao-grid">
+                <div class="criacao-card" data-aos="fade-up">
+                    <div class="criacao-img">
+                        <img src="img/02.jpeg" alt="Tilápias saudáveis nadando nos tanques de criação">
+                    </div>
+                    <div class="criacao-info">
+                        <h3>Criação Saudável</h3>
+                        <p>Peixes criados em água tratada e monitorada diariamente, com parâmetros rigorosos de oxigenação e temperatura.</p>
+                    </div>
+                </div>
+                <div class="criacao-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="criacao-img">
+                        <img src="img/14.jpeg" alt="Alimentação das tilápias em tanque azul">
+                    </div>
+                    <div class="criacao-info">
+                        <h3>Alimentação de Qualidade</h3>
+                        <p>Ração nutricionalmente balanceada que garante crescimento uniforme e carne de textura firme e sabor limpo.</p>
+                    </div>
+                </div>
+                <div class="criacao-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="criacao-img">
+                        <img src="img/03.jpeg" alt="Colheita e pesagem das tilápias">
+                    </div>
+                    <div class="criacao-info">
+                        <h3>Colheita no Ponto Certo</h3>
+                        <p>Retirada no momento ideal de maturação, com pesagem rigorosa e transporte imediato para o processamento.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Produto Section -->
     <section class="produto" id="produto">
         <div class="container">
@@ -339,7 +382,7 @@
             <div class="produto-grid">
                 <div class="produto-card">
                     <div class="produto-img">
-                        <img src="https://images.unsplash.com/photo-1599084993091-1cb5c0721cc6?w=600&q=80" alt="Filé de tilápia fresco">
+                        <img src="img/08.jpeg" alt="Filé de tilápia fresco Peskdo">
                         <div class="produto-tag">Mais Pedido</div>
                     </div>
                     <div class="produto-info">
@@ -355,7 +398,7 @@
                 </div>
                 <div class="produto-card">
                     <div class="produto-img">
-                        <img src="https://images.unsplash.com/photo-1607623814075-e51df1bd6565?w=600&q=80" alt="Filé de tilápia congelado">
+                        <img src="img/01.jpeg" alt="Filé de tilápia congelado Peskdo em embalagem de 5kg">
                     </div>
                     <div class="produto-info">
                         <h3>Filé de Tilápia <span>Congelado</span></h3>

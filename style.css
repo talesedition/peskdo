@@ -418,12 +418,22 @@ h1, h2, h3, h4, h5, h6 {
     position: absolute;
     inset: 0;
     z-index: 1;
+    background-size: cover;
+    background-position: center;
+}
+
+.banner-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,105,92,0.88) 0%, rgba(26,26,46,0.85) 100%);
+    z-index: 2;
 }
 
 .banner-shapes {
     position: absolute;
     inset: 0;
-    z-index: 2;
+    z-index: 3;
     overflow: hidden;
     pointer-events: none;
 }
@@ -698,11 +708,25 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ============================================
-   STATS
+   STATS — COM BACKGROUND IMAGE
    ============================================ */
 .stats {
-    padding: 60px 0;
-    background: var(--bg-light);
+    position: relative;
+    padding: 100px 0;
+    background: url('img/07.jpeg') center center / cover no-repeat fixed;
+    overflow: hidden;
+}
+
+.stats-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,105,92,0.92) 0%, rgba(26,26,46,0.88) 100%);
+    z-index: 1;
+}
+
+.stats .container {
+    position: relative;
+    z-index: 2;
 }
 
 .stats-grid {
@@ -714,22 +738,24 @@ h1, h2, h3, h4, h5, h6 {
 .stat-item {
     text-align: center;
     padding: 30px 20px;
-    background: #fff;
+    background: rgba(255,255,255,0.08);
     border-radius: var(--radius);
-    box-shadow: var(--shadow-sm);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
     transition: var(--transition);
 }
 
 .stat-item:hover {
     transform: translateY(-5px);
-    box-shadow: var(--shadow);
+    background: rgba(255,255,255,0.12);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
 }
 
 .stat-number {
     font-family: var(--font-heading);
     font-size: 2.8rem;
     font-weight: 900;
-    color: var(--primary);
+    color: #fff;
     line-height: 1;
     margin-bottom: 8px;
 }
@@ -737,13 +763,13 @@ h1, h2, h3, h4, h5, h6 {
 .stat-number span {
     font-size: 1rem;
     font-weight: 600;
-    color: var(--text-muted);
+    color: rgba(255,255,255,0.7);
     margin-left: 4px;
 }
 
 .stat-label {
     font-size: 0.9rem;
-    color: var(--text-light);
+    color: rgba(255,255,255,0.8);
     font-weight: 500;
 }
 
@@ -963,11 +989,72 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ============================================
+   NOSSA CRIAÇÃO — GALERIA
+   ============================================ */
+.criacao {
+    padding: 100px 0;
+    background: var(--bg);
+}
+
+.criacao-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.criacao-card {
+    background: #fff;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: var(--transition);
+}
+
+.criacao-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+    border-color: transparent;
+}
+
+.criacao-img {
+    position: relative;
+    overflow: hidden;
+    height: 240px;
+}
+
+.criacao-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.criacao-card:hover .criacao-img img {
+    transform: scale(1.08);
+}
+
+.criacao-info {
+    padding: 28px;
+}
+
+.criacao-info h3 {
+    font-size: 1.15rem;
+    margin-bottom: 10px;
+    color: var(--dark);
+}
+
+.criacao-info p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    line-height: 1.7;
+}
+
+/* ============================================
    PRODUTO
    ============================================ */
 .produto {
     padding: 100px 0;
-    background: var(--bg);
+    background: var(--bg-light);
 }
 
 .produto-grid {
@@ -1091,7 +1178,7 @@ h1, h2, h3, h4, h5, h6 {
    ============================================ */
 .para-quem {
     padding: 100px 0;
-    background: var(--bg-light);
+    background: var(--bg);
 }
 
 .pq-grid {
@@ -1735,6 +1822,7 @@ h1, h2, h3, h4, h5, h6 {
     .ps-solution { position: static; }
     .contato-wrapper { grid-template-columns: 1fr; }
     .contato-maps-fullwidth { height: 400px; }
+    .criacao-grid { grid-template-columns: repeat(2, 1fr); }
 
     /* Banners tablet */
     .hero-banners { height: 280px; }
@@ -1833,7 +1921,7 @@ h1, h2, h3, h4, h5, h6 {
     .lead-form-wrapper { padding: 28px 20px; }
 
     /* STATS MOBILE */
-    .stats { padding: 40px 0; }
+    .stats { padding: 60px 0; }
     .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
     .stat-item { padding: 20px 12px; }
     .stat-number { font-size: 2rem; }
@@ -1862,6 +1950,12 @@ h1, h2, h3, h4, h5, h6 {
     .sobre-content p { font-size: 0.95rem; line-height: 1.7; }
     .sobre-features { grid-template-columns: 1fr; gap: 12px; }
     .sfeature { font-size: 0.85rem; }
+
+    /* CRIAÇÃO MOBILE */
+    .criacao { padding: 60px 0; }
+    .criacao-grid { grid-template-columns: 1fr; gap: 20px; }
+    .criacao-img { height: 200px; }
+    .criacao-info { padding: 20px; }
 
     /* PRODUTO MOBILE */
     .produto { padding: 60px 0; }
