@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <base target="_blank">
-<base target="_blank">
 </head>
 <body>
 
@@ -19,8 +18,7 @@
     <nav class="navbar" id="navbar">
         <div class="container nav-container">
             <a href="#" class="logo">
-                <span class="logo-icon"><i class="fas fa-fish"></i></span>
-                <span class="logo-text">PESKDO</span>
+                <img src="img/Logo_Verde.png" alt="Peskdo" class="logo-img">
             </a>
             <button class="nav-toggle" id="navToggle" aria-label="Menu">
                 <span></span><span></span><span></span>
@@ -208,6 +206,35 @@
         </div>
     </section>
 
+    <!-- CARROSSEL DE GALERIA (3 IMAGENS) -->
+    <section class="galeria-carrossel" id="galeriaCarrossel">
+        <div class="galeria-track" id="galeriaTrack">
+            <div class="galeria-slide active">
+                <img src="img/05.jpeg" alt="Tanque externo maior">
+                <div class="galeria-caption">Nossos tanques de criação em Saquarema</div>
+            </div>
+            <div class="galeria-slide">
+                <img src="img/02.jpeg" alt="Peixes de perto">
+                <div class="galeria-caption">Tilápias saudáveis em água tratada</div>
+            </div>
+            <div class="galeria-slide">
+                <img src="img/01.jpeg" alt="Caixa do produto">
+                <div class="galeria-caption">Filé de tilápia embalado e pronto para entrega</div>
+            </div>
+        </div>
+        <button class="galeria-prev" id="galeriaPrev" aria-label="Imagem anterior">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="galeria-next" id="galeriaNext" aria-label="Próxima imagem">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="galeria-dots" id="galeriaDots">
+            <button class="dot active" data-slide="0" aria-label="Imagem 1"></button>
+            <button class="dot" data-slide="1" aria-label="Imagem 2"></button>
+            <button class="dot" data-slide="2" aria-label="Imagem 3"></button>
+        </div>
+    </section>
+
     <!-- Stats Section -->
     <section class="stats" id="stats">
         <div class="stats-overlay"></div>
@@ -292,10 +319,10 @@
             <div class="sobre-grid">
                 <div class="sobre-images">
                     <div class="sobre-img-main">
-                        <img src="img/05.jpeg" alt="Vista panorâmica dos tanques de criação Peskdo em Saquarema">
+                        <img src="img/13.jpeg" alt="Funcionários alimentando as tilápias nos tanques de criação">
                     </div>
                     <div class="sobre-img-secondary">
-                        <img src="img/09.jpeg" alt="Equipe Peskdo na estrutura de tanques elevados RAS">
+                        <img src="img/08.jpeg" alt="Equipe Peskdo em frente aos tanques elevados">
                     </div>
                     <div class="sobre-experience">
                         <span class="exp-number">Família</span>
@@ -382,7 +409,7 @@
             <div class="produto-grid">
                 <div class="produto-card">
                     <div class="produto-img">
-                        <img src="img/08.jpeg" alt="Filé de tilápia fresco Peskdo">
+                        <img src="img/01.jpeg" alt="Filé de tilápia fresco Peskdo">
                         <div class="produto-tag">Mais Pedido</div>
                     </div>
                     <div class="produto-info">
@@ -648,8 +675,7 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="#" class="logo">
-                        <span class="logo-icon"><i class="fas fa-fish"></i></span>
-                        <span class="logo-text">PESKDO</span>
+                        <img src="img/logo-branca.png" alt="Peskdo" class="logo-img">
                     </a>
                     <p>Produção e comercialização de tilápia de excelência. Do nosso tanque ao seu negócio com frescor, qualidade e preço justo.</p>
                     <div class="footer-social">

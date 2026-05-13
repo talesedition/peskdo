@@ -157,6 +157,115 @@ document.addEventListener('DOMContentLoaded', function() {
     bannersTrack.addEventListener('mouseleave', startBannerAutoPlay);
 
     // ==========================================
+    // CARROSSEL DE GALERIA (3 IMAGENS)
+    // ==========================================
+    const galeriaTrack = document.getElementById('galeriaTrack');
+    const galeriaSlides = document.querySelectorAll('.galeria-slide');
+    const galeriaDots = document.querySelectorAll('#galeriaDots .dot');
+    const galeriaPrev = document.getElementById('galeriaPrev');
+    const galeriaNext = document.getElementById('galeriaNext');
+    let currentGaleria = 0;
+    let galeriaInterval;
+    const galeriaDelay = 5000;
+
+    function goToGaleria(index) {
+        if (index < 0) index = galeriaSlides.length - 1;
+        if (index >= galeriaSlides.length) index = 0;
+
+        galeriaSlides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === index);
+        });
+
+        galeriaDots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+        });
+
+        currentGaleria = index;
+    }
+
+    function nextGaleria() {
+        goToGaleria(currentGaleria + 1);
+    }
+
+    function prevGaleria() {
+        goToGaleria(currentGaleria - 1);
+    }
+
+    function startGaleriaAutoPlay() {
+        galeriaInterval = setInterval(nextGaleria, galeriaDelay);
+    }
+
+    function stopGaleriaAutoPlay() {
+        clearInterval(galeriaInterval);
+    }
+
+    // Botões prev/next
+    if (galeriaPrev) {
+        galeriaPrev.addEventListener('click', () => {
+            stopGaleriaAutoPlay();
+            prevGaleria();
+            startGaleriaAutoPlay();
+        });
+    }
+
+    if (galeriaNext) {
+        galeriaNext.addEventListener('click', () => {
+            stopGaleriaAutoPlay();
+            nextGaleria();
+            startGaleriaAutoPlay();
+        });
+    }
+
+    // Dots click
+    galeriaDots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            stopGaleriaAutoPlay();
+            goToGaleria(index);
+            startGaleriaAutoPlay();
+        });
+    });
+
+    // Touch swipe para galeria
+    let galeriaTouchStartX = 0;
+    let galeriaTouchEndX = 0;
+
+    if (galeriaTrack) {
+        galeriaTrack.addEventListener('touchstart', function(e) {
+            galeriaTouchStartX = e.changedTouches[0].screenX;
+            stopGaleriaAutoPlay();
+        }, { passive: true });
+
+        galeriaTrack.addEventListener('touchend', function(e) {
+            galeriaTouchEndX = e.changedTouches[0].screenX;
+            handleGaleriaSwipe();
+            startGaleriaAutoPlay();
+        }, { passive: true });
+    }
+
+    function handleGaleriaSwipe() {
+        const swipeThreshold = 50;
+        const diff = galeriaTouchStartX - galeriaTouchEndX;
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                goToGaleria(currentGaleria + 1);
+            } else {
+                goToGaleria(currentGaleria - 1);
+            }
+        }
+    }
+
+    // Inicia autoplay da galeria
+    if (galeriaSlides.length > 0) {
+        startGaleriaAutoPlay();
+    }
+
+    // Pausa ao passar o mouse (desktop)
+    if (galeriaTrack) {
+        galeriaTrack.addEventListener('mouseenter', stopGaleriaAutoPlay);
+        galeriaTrack.addEventListener('mouseleave', startGaleriaAutoPlay);
+    }
+
+    // ==========================================
     // INTERSECTION OBSERVER — ANIMAÇÕES SCROLL
     // ==========================================
     const observerOptions = {
