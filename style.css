@@ -479,59 +479,22 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 50px;
     height: 100%;
-    text-align: left;
-}
-
-.banner-col {
-    flex: none;
-}
-
-.banner-icon-col {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.banner-icon-wrap {
-    width: 100px;
-    height: 100px;
-    background: rgba(255,255,255,0.15);
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255,255,255,0.25);
-    border-radius: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2.5rem;
-    color: #fff;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    text-align: center;
 }
 
 .banner-text-col {
-    max-width: 600px;
+    max-width: 800px;
+    width: 100%;
+    padding: 0 24px;
 }
 
 .banner-text-col h2 {
     color: #fff;
-    font-size: 2.4rem;
+    font-size: 3.2rem;
     font-weight: 800;
-    line-height: 1.2;
-    margin-bottom: 14px;
+    line-height: 1.1;
     text-shadow: 0 2px 10px rgba(0,0,0,0.15);
-}
-
-.banner-text-col p {
-    color: rgba(255,255,255,0.9);
-    font-size: 1.15rem;
-    line-height: 1.6;
-    font-family: var(--font-body);
-}
-
-.banner-text-col p strong {
-    color: #fff;
-    font-weight: 700;
 }
 
 /* Dots */
@@ -1950,9 +1913,7 @@ h1, h2, h3, h4, h5, h6 {
 
     /* Banners tablet */
     .hero-banners { height: 280px; }
-    .banner-icon-wrap { width: 80px; height: 80px; font-size: 2rem; }
-    .banner-text-col h2 { font-size: 1.9rem; }
-    .banner-text-col p { font-size: 1rem; }
+    .banner-text-col h2 { font-size: 2.6rem; }
 
     /* Galeria tablet */
     .galeria-carrossel { max-width: 600px; }
@@ -2001,29 +1962,11 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .banner-inner {
-        flex-direction: column;
-        text-align: center;
-        gap: 20px;
         padding: 20px;
     }
 
-    .banner-col {
-        flex: none !important;
-        width: 100%;
-    }
-
-    .banner-icon-wrap {
-        width: 70px;
-        height: 70px;
-        font-size: 1.8rem;
-    }
-
     .banner-text-col h2 {
-        font-size: 1.5rem;
-    }
-
-    .banner-text-col p {
-        font-size: 0.95rem;
+        font-size: 1.8rem;
     }
 
     .banner-dots {
@@ -2199,8 +2142,7 @@ h1, h2, h3, h4, h5, h6 {
     .contato-maps-fullwidth { height: 300px; }
 
     /* Banners small mobile */
-    .banner-text-col h2 { font-size: 1.3rem; }
-    .banner-icon-wrap { width: 60px; height: 60px; font-size: 1.5rem; }
+    .banner-text-col h2 { font-size: 1.5rem; }
 
     /* Galeria small mobile */
     .galeria-carrossel { max-width: 95vw; }
