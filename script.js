@@ -1,7 +1,7 @@
 /* ============================================
    PESKDO — script.js
-   Interatividade · Animações · Conversão
-   v2.0 — Otimizado e Corrigido
+   Interatividade · Animações · Conversão · Consulta CEP
+   v2.2 — Consulta automática ViaCEP (maio/2026)
    ============================================ */
 
 (function() {
@@ -21,10 +21,7 @@
     let ticking = false;
 
     function updateNavbar(currentScroll) {
-        // Efeito de background/blur
         navbar.classList.toggle('scrolled', currentScroll > 50);
-
-        // Hide/show no mobile (scroll para baixo esconde, para cima mostra)
         if (window.innerWidth <= 768) {
             if (currentScroll > lastScrollY && currentScroll > 300) {
                 navbar.style.transform = 'translateY(-100%)';
@@ -86,7 +83,6 @@
         }
     }, { passive: true });
 
-    // Estado inicial
     onScroll();
 
     /* ==========================================
@@ -112,7 +108,6 @@
             });
         });
 
-        // Fecha ao clicar fora
         document.addEventListener('click', function(e) {
             if (!navbar.contains(e.target) && navMenu.classList.contains('active')) {
                 navMenu.classList.remove('active');
@@ -121,7 +116,6 @@
             }
         });
 
-        // Fecha ao redimensionar para desktop
         window.addEventListener('resize', function() {
             if (window.innerWidth > 768 && navMenu.classList.contains('active')) {
                 navMenu.classList.remove('active');
@@ -206,7 +200,6 @@
             interval = null;
         }
 
-        // Dots
         if (dots) {
             dots.forEach(function(dot, index) {
                 dot.addEventListener('click', function() {
@@ -217,7 +210,6 @@
             });
         }
 
-        // Botões prev/next
         if (prevBtn) {
             prevBtn.addEventListener('click', function() {
                 stop();
@@ -233,7 +225,6 @@
             });
         }
 
-        // Touch swipe (apenas horizontal)
         if (track) {
             track.addEventListener('touchstart', function(e) {
                 touchStartX = e.changedTouches[0].screenX;
@@ -253,7 +244,6 @@
             const diffX = touchStartX - touchEndX;
             const diffY = touchStartY - touchEndY;
 
-            // Só processa se o movimento for predominantemente horizontal
             if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
                 if (diffX > 0) {
                     next();
@@ -263,13 +253,11 @@
             }
         }
 
-        // Pausa ao passar o mouse (desktop)
         if (track && !isTouchDevice) {
             track.addEventListener('mouseenter', stop);
             track.addEventListener('mouseleave', start);
         }
 
-        // Pausa quando sai da viewport (economia de bateria)
         const visibilityObserver = new IntersectionObserver(function(entries) {
             entries.forEach(function(entry) {
                 isVisible = entry.isIntersecting;
@@ -283,11 +271,9 @@
 
         if (track) visibilityObserver.observe(track);
 
-        // Inicia
         goTo(0);
         start();
 
-        // API pública
         return { goTo, next, prev, stop, start };
     }
 
@@ -327,7 +313,6 @@
             delay: 5000
         });
 
-        // Navegação por teclado (setas) quando a galeria está em foco
         galeriaTrack.setAttribute('tabindex', '0');
         galeriaTrack.addEventListener('keydown', function(e) {
             if (e.key === 'ArrowLeft') {
@@ -369,7 +354,6 @@
 
     document.querySelectorAll('[data-aos], .stat-item').forEach(function(el) {
         if (prefersReducedMotion) {
-            // Sem animação: mostra imediatamente
             el.classList.add('aos-animate');
             if (el.classList.contains('stat-item')) {
                 animateNumber(el);
@@ -444,6 +428,93 @@
     aplicarMascaraTelefone(document.getElementById('whatsappFinal'));
 
     /* ==========================================
+       CONSULTA AUTOMÁTICA DE CEP (ViaCEP)
+       Preenche Cidade, Estado e Rua automaticamente
+       ========================================== */
+    function consultarCep(cep, callback) {
+        const cepLimpo = cep.replace(/\D/g, '');
+        if (cepLimpo.length !== 8) {
+            callback(null);
+            return;
+        }
+
+        fetch('https://viacep.com.br/ws/' + cepLimpo + '/json/')
+            .then(function(response) { return response.json(); })
+            .then(function(data) {
+                if (data.erro) {
+                    callback(null);
+                } else {
+                    callback(data);
+                }
+            })
+            .catch(function() {
+                callback(null);
+            });
+    }
+
+    function aplicarMascaraCep(input) {
+        if (!input) return;
+
+        input.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 8) value = value.slice(0, 8);
+            if (value.length > 5) {
+                value = value.replace(/(\d{5})(\d{0,3})/, '$1-$2');
+            }
+            e.target.value = value;
+        });
+    }
+
+    function vincularConsultaCep(cepInput, cidadeInput, estadoInput, ruaInput) {
+        if (!cepInput) return;
+
+        cepInput.addEventListener('blur', function() {
+            const cepLimpo = cepInput.value.replace(/\D/g, '');
+            if (cepLimpo.length !== 8) return;
+
+            cepInput.classList.add('cep-loading');
+            consultarCep(cepLimpo, function(data) {
+                cepInput.classList.remove('cep-loading');
+                if (!data) return;
+
+                if (cidadeInput && data.localidade) {
+                    cidadeInput.value = data.localidade;
+                    cidadeInput.setAttribute('data-auto-filled', 'true');
+                }
+                if (estadoInput && data.uf) {
+                    estadoInput.value = data.uf;
+                    estadoInput.setAttribute('data-auto-filled', 'true');
+                }
+                if (ruaInput && data.logradouro) {
+                    var endereco = data.logradouro;
+                    if (data.bairro) endereco += ' — ' + data.bairro;
+                    ruaInput.value = endereco;
+                    ruaInput.setAttribute('data-auto-filled', 'true');
+                }
+            });
+        });
+    }
+
+    // Aplicar máscara nos campos de CEP
+    aplicarMascaraCep(document.getElementById('cepLead'));
+    aplicarMascaraCep(document.getElementById('cepFinal'));
+
+    // Vincular consulta automática
+    vincularConsultaCep(
+        document.getElementById('cepLead'),
+        document.getElementById('cidadeLead'),
+        document.getElementById('estadoLead'),
+        document.getElementById('ruaLead')
+    );
+
+    vincularConsultaCep(
+        document.getElementById('cepFinal'),
+        document.getElementById('cidadeFinal'),
+        document.getElementById('estadoFinal'),
+        document.getElementById('ruaFinal')
+    );
+
+    /* ==========================================
        FORMULÁRIO LEAD (NO INÍCIO) → WHATSAPP
        ========================================== */
     const leadForm = document.getElementById('leadFormElement');
@@ -455,9 +526,13 @@
             const email = document.getElementById('emailLead').value.trim();
             const telefone = document.getElementById('telefoneLead').value.trim();
             const tipo = document.getElementById('tipoLead').value;
+            const cep = document.getElementById('cepLead').value.trim();
+            const cidade = document.getElementById('cidadeLead').value.trim();
+            const estado = document.getElementById('estadoLead').value.trim();
+            const rua = document.getElementById('ruaLead').value.trim();
             const mensagem = document.getElementById('mensagemLead').value.trim();
 
-            if (!nome || !email || !telefone || !tipo || !mensagem) return;
+            if (!nome || !email || !telefone || !tipo || !cep || !cidade || !estado || !mensagem) return;
 
             const tipoLabels = {
                 'supermercado': 'Supermercado',
@@ -477,6 +552,16 @@
             text += '*WhatsApp:* ' + encodeURIComponent(telefone);
             text += '%0A';
             text += '*Interesse:* ' + encodeURIComponent(tipoInteresse);
+            text += '%0A';
+            text += '*CEP:* ' + encodeURIComponent(cep);
+            text += '%0A';
+            text += '*Cidade:* ' + encodeURIComponent(cidade);
+            text += '%0A';
+            text += '*Estado:* ' + encodeURIComponent(estado);
+            if (rua) {
+                text += '%0A';
+                text += '*Endereço:* ' + encodeURIComponent(rua);
+            }
             text += '%0A%0A';
             text += '*Mensagem:*';
             text += '%0A' + encodeURIComponent(mensagem);
@@ -513,9 +598,13 @@
             const qtdEstabelecimentos = document.getElementById('qtdEstabelecimentos').value.trim();
             const email = document.getElementById('emailFinal').value.trim();
             const whatsapp = document.getElementById('whatsappFinal').value.trim();
+            const cep = document.getElementById('cepFinal').value.trim();
+            const cidade = document.getElementById('cidadeFinal').value.trim();
+            const estado = document.getElementById('estadoFinal').value.trim();
+            const rua = document.getElementById('ruaFinal').value.trim();
             const mensagem = document.getElementById('mensagemFinal').value.trim();
 
-            if (!tipoNegocio || !qtdEstabelecimentos || !email || !whatsapp || !mensagem) return;
+            if (!tipoNegocio || !qtdEstabelecimentos || !email || !whatsapp || !cep || !cidade || !estado || !mensagem) return;
 
             const tipoLabels = {
                 'supermercado': 'Supermercado',
@@ -534,6 +623,16 @@
             text += '*E-mail:* ' + encodeURIComponent(email);
             text += '%0A';
             text += '*WhatsApp:* ' + encodeURIComponent(whatsapp);
+            text += '%0A';
+            text += '*CEP:* ' + encodeURIComponent(cep);
+            text += '%0A';
+            text += '*Cidade:* ' + encodeURIComponent(cidade);
+            text += '%0A';
+            text += '*Estado:* ' + encodeURIComponent(estado);
+            if (rua) {
+                text += '%0A';
+                text += '*Endereço:* ' + encodeURIComponent(rua);
+            }
             text += '%0A%0A';
             text += '*Mensagem:*';
             text += '%0A' + encodeURIComponent(mensagem);
@@ -559,10 +658,8 @@
     }
 
     /* ==========================================
-       LAZY LOADING NATIVO (sem FOUC)
+       LAZY LOADING NATIVO
        ========================================== */
-    // Aplica loading="lazy" nativo do navegador em todas as imagens
-    // exceto o logo, que é above-the-fold e deve carregar imediatamente
     document.querySelectorAll('img').forEach(function(img) {
         if (!img.classList.contains('logo-img') && !img.hasAttribute('loading')) {
             img.setAttribute('loading', 'lazy');

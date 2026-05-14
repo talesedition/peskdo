@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <base target="_blank">
 <base target="_blank">
-<base target="_blank">
 </head>
 <body>
 
@@ -55,6 +54,7 @@
                 <div class="container banner-inner">
                     <div class="banner-text-col">
                         <h2>Rendimento Real</h2>
+                        <p class="banner-subtitle">Filé drenado: o peso na bandeja é o peso que você paga</p>
                     </div>
                 </div>
             </div>
@@ -69,6 +69,7 @@
                 <div class="container banner-inner">
                     <div class="banner-text-col">
                         <h2>Criação Própria</h2>
+                        <p class="banner-subtitle">28 mil m² de piscicultura em Saquarema/RJ</p>
                     </div>
                 </div>
             </div>
@@ -83,6 +84,7 @@
                 <div class="container banner-inner">
                     <div class="banner-text-col">
                         <h2>Logística Própria</h2>
+                        <p class="banner-subtitle">Do tanque ao seu negócio em tempo recorde</p>
                     </div>
                 </div>
             </div>
@@ -167,15 +169,35 @@
                             <input type="tel" id="telefoneLead" name="telefone" placeholder="(21) 99999-9999" required>
                         </div>
                     </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="tipoLead">Tipo de negócio</label>
+                            <select id="tipoLead" name="tipo" required>
+                                <option value="" disabled selected>Selecione...</option>
+                                <option value="supermercado">Supermercado</option>
+                                <option value="restaurante">Restaurante</option>
+                                <option value="distribuidor">Distribuidor</option>
+                                <option value="outro">Outro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="cepLead">CEP</label>
+                            <input type="text" id="cepLead" name="cep" class="cep-input" placeholder="12345-678" maxlength="9" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cidadeLead">Cidade</label>
+                            <input type="text" id="cidadeLead" name="cidade" placeholder="Preenchido automaticamente" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="estadoLead">Estado</label>
+                            <input type="text" id="estadoLead" name="estado" placeholder="Preenchido automaticamente" required>
+                        </div>
+                    </div>
                     <div class="form-group">
-                        <label for="tipoLead">Tipo de negócio</label>
-                        <select id="tipoLead" name="tipo" required>
-                            <option value="" disabled selected>Selecione...</option>
-                            <option value="supermercado">Supermercado</option>
-                            <option value="restaurante">Restaurante</option>
-                            <option value="distribuidor">Distribuidor</option>
-                            <option value="outro">Outro</option>
-                        </select>
+                        <label for="ruaLead">Rua / Bairro <small>(preenchido automaticamente pelo CEP)</small></label>
+                        <input type="text" id="ruaLead" name="rua" placeholder="Rua e bairro (opcional)">
                     </div>
                     <div class="form-group">
                         <label for="mensagemLead">Mensagem</label>
@@ -194,15 +216,15 @@
     <section class="galeria-carrossel" id="galeriaCarrossel">
         <div class="galeria-track" id="galeriaTrack">
             <div class="galeria-slide active">
-                <img src="img/05.jpeg" alt="Tanque externo maior">
+                <img src="img/05.jpeg" alt="Nossos tanques de criação em Saquarema">
                 <div class="galeria-caption">Nossos tanques de criação em Saquarema</div>
             </div>
             <div class="galeria-slide">
-                <img src="img/02.jpeg" alt="Peixes de perto">
+                <img src="img/02.jpeg" alt="Tilápias saudáveis em água tratada">
                 <div class="galeria-caption">Tilápias saudáveis em água tratada</div>
             </div>
             <div class="galeria-slide">
-                <img src="img/01.jpeg" alt="Caixa do produto">
+                <img src="img/01.jpeg" alt="Filé de tilápia embalado e pronto para entrega">
                 <div class="galeria-caption">Filé de tilápia embalado e pronto para entrega</div>
             </div>
         </div>
@@ -266,13 +288,6 @@
                                 <p>Não sabe de onde veio o peixe, como foi criado nem quanto tempo ficou em transporte. Qualidade incerta.</p>
                             </div>
                         </div>
-                        <div class="problem-item">
-                            <div class="problem-icon"><i class="fas fa-xmark"></i></div>
-                            <div>
-                                <strong>Entregas atrasadas e peixe estragado</strong>
-                                <p>Logística terceirizada que não garante a cadeia de frio. Prejuízo com perdas e insatisfação do cliente final.</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="ps-solution">
@@ -303,10 +318,10 @@
             <div class="sobre-grid">
                 <div class="sobre-images">
                     <div class="sobre-img-main">
-                        <img src="img/13.jpeg" alt="Funcionários Peskdo alimentando as tilápias nos tanques de criação">
+                        <img src="img/13.jpeg" alt="Equipe Peskdo trabalhando nos tanques de criação">
                     </div>
                     <div class="sobre-img-secondary">
-                        <img src="img/08.jpeg" alt="Equipe Peskdo trabalhando nos tanques elevados">
+                        <img src="img/08.jpeg" alt="Tanques elevados da piscicultura Peskdo">
                     </div>
                     <div class="sobre-experience">
                         <span class="exp-number">Família</span>
@@ -362,7 +377,7 @@
                 </div>
                 <div class="criacao-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="criacao-img">
-                        <img src="img/14.jpeg" alt="Alimentação das tilápias em tanque azul">
+                        <img src="img/14.jpeg" alt="Alimentação das tilápias com ração de qualidade">
                     </div>
                     <div class="criacao-info">
                         <h3>Alimentação de Qualidade</h3>
@@ -371,10 +386,10 @@
                 </div>
                 <div class="criacao-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="criacao-img">
-                        <img src="img/09.jpeg" alt="Colheita e pesagem das tilápias">
+                        <img src="img/09.jpeg" alt="Despesca e pesagem das tilápias no momento ideal">
                     </div>
                     <div class="criacao-info">
-                        <h3>Colheita no Ponto Certo</h3>
+                        <h3>Despesca no Ponto Certo</h3>
                         <p>Retirada no momento ideal de maturação, com pesagem rigorosa e transporte imediato para o processamento.</p>
                     </div>
                 </div>
@@ -393,7 +408,7 @@
             <div class="produto-grid">
                 <div class="produto-card">
                     <div class="produto-img">
-                        <img src="img/01.jpeg" alt="Filé de tilápia fresco Peskdo">
+                        <img src="img/file_tilapia_fresco.png" alt="Filé de tilápia fresco Peskdo - carne branca e firme">
                         <div class="produto-tag">Mais Pedido</div>
                     </div>
                     <div class="produto-info">
@@ -409,7 +424,7 @@
                 </div>
                 <div class="produto-card">
                     <div class="produto-img">
-                        <img src="img/01.jpeg" alt="Filé de tilápia congelado Peskdo em embalagem de 5kg">
+                        <img src="img/file_congelado.png" alt="Filé de tilápia congelado Peskdo - praticidade e qualidade">
                     </div>
                     <div class="produto-info">
                         <h3>Filé de Tilápia <span>Congelado</span></h3>
@@ -580,6 +595,26 @@
                                 <input type="tel" id="whatsappFinal" name="whatsapp" placeholder="(21) 99999-9999" required>
                             </div>
                         </div>
+                        <div class="form-row-tres">
+                            <div class="form-group">
+                                <label for="cepFinal">CEP</label>
+                                <input type="text" id="cepFinal" name="cep" class="cep-input" placeholder="12345-678" maxlength="9" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cidadeFinal">Cidade</label>
+                                <input type="text" id="cidadeFinal" name="cidade" placeholder="Preenchido automaticamente" required>
+                            </div>
+                        </div>
+                        <div class="form-row-tres">
+                            <div class="form-group">
+                                <label for="estadoFinal">Estado</label>
+                                <input type="text" id="estadoFinal" name="estado" placeholder="Preenchido automaticamente" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="ruaFinal">Rua / Bairro <small>(preenchido automaticamente)</small></label>
+                                <input type="text" id="ruaFinal" name="rua" placeholder="Rua e bairro (opcional)">
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label for="mensagemFinal">Mensagem</label>
                             <textarea id="mensagemFinal" name="mensagem" rows="4" placeholder="Conte-nos sobre sua demanda (volume, frequência, local de entrega...)" required></textarea>
@@ -659,7 +694,7 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="#" class="logo">
-                        <img src="img/logo-branca.png" alt="Peskdo" class="logo-img">
+                        <img src="img/Logo_Branca.png" alt="Peskdo" class="logo-img">
                     </a>
                     <p>Produção e comercialização de tilápia de excelência. Do nosso tanque ao seu negócio com frescor, qualidade e preço justo.</p>
                     <div class="footer-social">
