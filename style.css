@@ -1952,17 +1952,23 @@ h1, h2, h3, h4, h5, h6 {
 
     /* BANNERS MOBILE */
     .hero-banners {
-        height: auto;
-        min-height: 260px;
+        height: 320px;
+        min-height: 320px;
         margin-top: 70px;
     }
 
+    .banners-track {
+        height: 100%;
+    }
+
     .banner-slide {
-        padding: 30px 0;
+        padding: 0;
+        height: 100%;
     }
 
     .banner-inner {
         padding: 20px;
+        height: 100%;
     }
 
     .banner-text-col h2 {
