@@ -2231,3 +2231,51 @@ input[data-auto-filled="true"],
     .btn { padding: 12px 18px; font-size: 0.85rem; }
     .btn-lg { padding: 12px 18px; }
 }
+
+/* ============================================
+   MERCADOS ATENDIDOS
+   ============================================ */
+.mercados-atendidos {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.mercados-atendidos h3 {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    color: var(--dark);
+    margin-bottom: 20px;
+}
+
+.mercados-lista {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+.mercado-tag {
+    display: inline-block;
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: var(--transition);
+    border: 1px solid transparent;
+}
+
+.mercado-tag:hover {
+    background: var(--primary);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+@media (max-width: 768px) {
+    .mercados-atendidos { margin-top: 36px; }
+    .mercados-atendidos h3 { font-size: 1.05rem; }
+    .mercado-tag { font-size: 0.8rem; padding: 6px 14px; }
+}
