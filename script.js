@@ -566,7 +566,7 @@
             text += '*Mensagem:*';
             text += '%0A' + encodeURIComponent(mensagem);
 
-            const whatsappUrl = 'https://wa.me/5521998716964?text=' + text;
+            const whatsappUrl = 'https://wa.me/5521976184069?text=' + text;
             window.open(whatsappUrl, '_blank');
 
             const btn = leadForm.querySelector('button[type="submit"]');
@@ -637,7 +637,7 @@
             text += '*Mensagem:*';
             text += '%0A' + encodeURIComponent(mensagem);
 
-            const whatsappUrl = 'https://wa.me/5521998716964?text=' + text;
+            const whatsappUrl = 'https://wa.me/5521976184069?text=' + text;
             window.open(whatsappUrl, '_blank');
 
             const btn = contatoFormFinal.querySelector('button[type="submit"]');
