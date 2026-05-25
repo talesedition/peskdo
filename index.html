@@ -10,14 +10,7 @@
 
     gtag('config', 'AW-18179197244');
     </script>
-    <!-- Event snippet for Visualização de página conversion page -->
-    <script>
-    gtag('event', 'conversion', {
-        'send_to': 'AW-18179197244/dMWMCOuHjLEcELySwtxD',
-        'value': 1.0,
-        'currency': 'BRL'
-    });
-    </script>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Peskdo | Filé de Tilápia Fresco e Congelado — Do Produtor para o Seu Negócio</title>
@@ -27,8 +20,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <base target="_blank">
 <base target="_blank">
+
     <!-- Meta Pixel Code -->
     <script>
     !function(f,b,e,v,n,t,s)
@@ -46,7 +39,7 @@
     src="https://www.facebook.com/tr?id=1523599486075419&ev=PageView&noscript=1"
     /></noscript>
     <!-- End Meta Pixel Code -->
-     
+
 </head>
 <body>
 
@@ -140,7 +133,7 @@
         <div class="container hero-container">
             <div class="hero-content">
                 <div class="hero-badge">
-                    <i class="fas fa-check-circle"></i> Produtor direto — Sem intermediários
+                    <i class="fas fa-check-circle"></i> Produtor direto — Da criação ao cliente
                 </div>
                 <h1 class="hero-title">
                     Filé de Tilápia <span class="text-accent">Fresco e Congelado</span> com Rendimento Consistente para o Seu Negócio
@@ -241,6 +234,14 @@
                     <button type="submit" class="btn btn-primary btn-lg btn-full">
                         <i class="fas fa-paper-plane"></i> Enviar Mensagem
                     </button>
+                    <div class="form-group form-checkbox">
+                        <input type="checkbox" id="consentLead" name="consent" required>
+                        <label for="consentLead">Concordo com o <a href="privacidade.html" target="_blank">processamento dos meus dados</a> para contato.</label>
+                    </div>
+                    <div class="form-group form-checkbox">
+                        <input type="checkbox" id="consentFinal" name="consent" required>
+                        <label for="consentFinal">Concordo com o <a href="privacidade.html" target="_blank">processamento dos meus dados</a> para contato.</label>
+                    </div>
                     <p class="form-note">Ao enviar, você receberá uma cópia no WhatsApp com todos os dados preenchidos.</p>
                 </form>
             </div>
@@ -294,7 +295,7 @@
                             <div class="problem-icon"><i class="fas fa-xmark"></i></div>
                             <div>
                                 <strong>Falta de rastreabilidade</strong>
-                                <p>Não sabe de onde veio o peixe, como foi criado nem quanto tempo ficou em transporte. Qualidade incerta.</p>
+                                <p>Não sabe de onde veio o peixe, como foi criado nem quanto tempo ficou em transporte. Dificuldade de rastrear a origem.</p>
                             </div>
                         </div>
                     </div>
@@ -431,7 +432,7 @@
                         </div>
                     <div class="produto-info">
                         <h3>Filé de Tilápia <span>Fresco</span></h3>
-                        <p>Retirado do tanque, processado e embalado no mesmo dia. Textura firme, cor brilhante e sabor limpo. Ideal para restaurantes que valorizam frescor.</p>
+                        <p>Retirado do tanque, processado e embalado no mesmo dia. Textura firme, cor brilhante e sabor limpo. Indicado para restaurantes que valorizam frescor.</p>
                         <ul class="produto-specs">
                             <li><i class="fas fa-check"></i> Embalagem a vácuo</li>
                             <li><i class="fas fa-check"></i> Processo de drenagem que reduz a retenção de água</li>
@@ -634,7 +635,15 @@
                         <button type="submit" class="btn btn-primary btn-lg btn-full">
                             <i class="fas fa-paper-plane"></i> Enviar Mensagem
                         </button>
-                        <p class="form-note">Ao enviar, você receberá uma cópia no WhatsApp com todos os dados preenchidos.</p>
+                        <div class="form-group form-checkbox">
+                        <input type="checkbox" id="consentLead" name="consent" required>
+                        <label for="consentLead">Concordo com o <a href="privacidade.html" target="_blank">processamento dos meus dados</a> para contato.</label>
+                    </div>
+                    <div class="form-group form-checkbox">
+                        <input type="checkbox" id="consentFinal" name="consent" required>
+                        <label for="consentFinal">Concordo com o <a href="privacidade.html" target="_blank">processamento dos meus dados</a> para contato.</label>
+                    </div>
+                    <p class="form-note">Ao enviar, você receberá uma cópia no WhatsApp com todos os dados preenchidos.</p>
                     </form>
                 </div>
 
@@ -742,7 +751,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2026 Peskdo MBF Ltda. Todos os direitos reservados.</p>
+                <p>© 2026 Peskdo MBF Ltda. Todos os direitos reservados. · <a href="privacidade.html">Política de Privacidade</a></p>
                 <p class="footer-credit">Desenvolvido com foco em resultados.</p>
             </div>
         </div>
@@ -756,5 +765,32 @@
     </a>
 
     <script src="script.js"></script>
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1523599486075419');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1523599486075419&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <!-- Event snippet for Visualização de página conversion page -->
+    <script>
+    gtag('event', 'conversion', {
+        'send_to': 'AW-18179197244/dMWMCOuHjLEcELySwtxD',
+        'value': 1.0,
+        'currency': 'BRL'
+    });
+    </script>
 </body>
 </html>
